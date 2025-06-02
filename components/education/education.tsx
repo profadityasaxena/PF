@@ -125,7 +125,7 @@ const Education = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[2em] justify-center">
         {educationData.map((edu, index) => (
           <div
-            className="card relative bg-[#fffef9] border-[10px] border-[var(--color-medium-brown)] rounded-[1rem] shadow-[0_10px_25px_rgba(0,0,0,0.15)] p-8 flex flex-col items-center justify-start transition-transform w-[210mm] h-[297mm] mx-auto"
+            className="card relative bg-[#fffef9] border-[10px] border-[var(--color-medium-brown)] rounded-[1rem] shadow-[0_10px_25px_rgba(0,0,0,0.15)] pt-[3em] px-8 pb-8 flex flex-col items-center justify-center transition-transform w-[210mm] h-[144mm] mx-auto"
             key={index}
             style={{ transformStyle: 'preserve-3d' }}
           >
