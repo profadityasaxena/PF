@@ -8,7 +8,7 @@ import { faHome, faUser, faFolderOpen, faEnvelope } from '@fortawesome/free-soli
 
 const TopNavigation = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-[60px] bg-white z-50 flex items-center justify-between px-4 border-b border-gray-300">
+    <div style={{ zIndex: 9999 }} className="block fixed top-0 w-full h-[60px] bg-white flex items-center justify-between px-4 border-b border-gray-300">
       <div className="flex items-center">
         <Logo />
       </div>
@@ -22,12 +22,16 @@ const TopNavigation = () => {
           <FontAwesomeIcon icon={faEnvelope} />
         </a>
         <span className="text-gray-400">|</span>
-        <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+        <a href="https://www.linkedin.com/in/itsadisxnn/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
           LinkedIn
         </a>
         <span className="text-gray-400">|</span>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+        <a href="https://github.com/profadityasaxena" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
           GitHub
+        </a>
+        <span className="text-gray-400">|</span>
+        <a href="https://calendly.com/iam_adisxn/30min" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+          Appointments
         </a>
       </nav>
     </div>

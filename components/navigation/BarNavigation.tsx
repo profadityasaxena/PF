@@ -10,11 +10,13 @@ import menuImage4 from './assets/menu-item-4.png';
 import menuImage5 from './assets/menu-item-5.png';
 
 const BarNavigation = () => {
-    const barRefs = useRef([]);
+  const barRefs = useRef([]);
   const contentRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(null);
   const [countdown, setCountdown] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
+  // Bar reference
+  const barRef = useRef(null);
 
   useEffect(() => {
     // Animate bars sliding in from the left
@@ -44,6 +46,7 @@ const BarNavigation = () => {
       ease: 'power2.out'
     });
   }, []);
+
 
   const handleBarClick = (index) => {
     setActiveIndex(index);
@@ -86,11 +89,14 @@ const BarNavigation = () => {
   };
 
   return (
-    <div className="fixed top-[60px] left-0 h-screen w-screen bg-white z-[9999] overflow-y-auto flex" style={{ width: '100vw !important' }}>
+    <div
+      ref={barRef}
+      className="block relative top-[60px] left-0 w-screen bg-white z-50 flex transition-all duration-700 ease-in-out mb-[60px] pb-[4em] h-auto"
+    >
       {/* Static vertical bars */}
       <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[0] = el} onClick={() => handleBarClick(0)}>
         <div
-          className="w-[30px] h-full border-r flex items-center justify-center transition-colors duration-200"
+          className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
             backgroundColor: 'var(--color-light-brown)',
             borderColor: 'var(--color-cream)'
@@ -111,7 +117,7 @@ const BarNavigation = () => {
       </div>
       <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[1] = el} onClick={() => handleBarClick(1)}>
         <div
-          className="w-[30px] h-full border-r flex items-center justify-center transition-colors duration-200"
+          className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
             backgroundColor: 'var(--color-light-brown)',
             borderColor: 'var(--color-cream)'
@@ -132,7 +138,7 @@ const BarNavigation = () => {
       </div>
       <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[2] = el} onClick={() => handleBarClick(2)}>
         <div
-          className="w-[30px] h-full border-r flex items-center justify-center transition-colors duration-200"
+          className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
             backgroundColor: 'var(--color-light-brown)',
             borderColor: 'var(--color-cream)'
@@ -153,7 +159,7 @@ const BarNavigation = () => {
       </div>
       <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[3] = el} onClick={() => handleBarClick(3)}>
         <div
-          className="w-[30px] h-full border-r flex items-center justify-center transition-colors duration-200"
+          className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
             backgroundColor: 'var(--color-light-brown)',
             borderColor: 'var(--color-cream)'
@@ -174,7 +180,7 @@ const BarNavigation = () => {
       </div>
       <div className="ml-[0.5em]" ref={el => barRefs.current[4] = el} onClick={() => handleBarClick(4)}>
         <div
-          className="w-[30px] h-full border-r flex items-center justify-center transition-colors duration-200"
+          className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
             backgroundColor: 'var(--color-light-brown)',
             borderColor: 'var(--color-cream)'

@@ -57,3 +57,42 @@ button {
 input, textarea, select {
   font-family: var(--font-form);
 }
+
+/* Card Styles */
+.card {
+  width: 100%;
+  background-color: var(--color-light-brown);
+  color: var(--color-dark-brown);
+  font-family: var(--font-body);
+  border: 2px solid var(--color-cream);
+  box-shadow: 0 4px 12px rgba(124, 85, 56, 0.2);
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-deep-brown);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-dark-brown);
+  margin-bottom: 0.25rem;
+}
+
+.card ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  color: var(--color-dark-brown);
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(124, 85, 56, 0.3);
+}
