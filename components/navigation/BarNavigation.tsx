@@ -33,6 +33,16 @@ const BarNavigation = () => {
       duration: 1,
       ease: 'power1.out'
     });
+
+    // Animate text blocks
+    gsap.from('.text-block', {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      stagger: 0.2,
+      delay: 1,
+      ease: 'power2.out'
+    });
   }, []);
 
   const handleBarClick = (index) => {
@@ -192,7 +202,7 @@ const BarNavigation = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-[var(--color-dark-brown)] font-serif text-sm sm:text-[0.95rem] w-full max-w-7xl mx-auto box-border px-6 sm:px-12 md:px-20 lg:px-32 justify-items-center">
 
           {/* Japanese */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">生き甲斐</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) は「生きる意味」または「生きがい」と訳される日本語の概念です。
@@ -201,7 +211,7 @@ const BarNavigation = () => {
           </div>
 
           {/* English */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">What’s My Ikigai</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) is a Japanese concept meaning <em>“a reason for being.”</em>
@@ -216,7 +226,7 @@ const BarNavigation = () => {
           </div>
 
           {/* French */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">Mon Ikigai</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) est un mot japonais qui veut dire <em>« une raison d’être »</em>.
@@ -231,7 +241,7 @@ const BarNavigation = () => {
           </div>
 
           {/* Hindi */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">मेरा इकिगाई</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) एक जापानी शब्द है जिसका मतलब है <em>“जीने का कारण।”</em>
@@ -245,7 +255,7 @@ const BarNavigation = () => {
           </div>
 
           {/* Spanish */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">Mi Ikigai</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) es una palabra japonesa que significa <em>“una razón para vivir.”</em>
@@ -259,7 +269,7 @@ const BarNavigation = () => {
           </div>
 
           {/* Portuguese */}
-          <div className="space-y-3 w-full break-words">
+          <div className="space-y-3 w-full break-words text-block">
             <h2 className="text-xl font-bold text-[var(--color-soft-brown)] tracking-tight">Meu Ikigai</h2>
             <p className="text-xs sm:text-sm text-balance">
               <span className="font-semibold">Ikigai</span> (生き甲斐) é uma palavra japonesa que significa <em>“uma razão para viver.”</em>
