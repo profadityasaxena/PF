@@ -91,7 +91,7 @@ const projects: Project[] = [
 
 const Projects: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -238,7 +238,7 @@ const Projects: React.FC = () => {
             color: "#000",
             boxSizing: "border-box",
             transformStyle: "preserve-3d",
-            transformPerspective: "1000px",
+            perspective: "1000px",
             boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
             transition: "box-shadow 0.3s ease",
           }}

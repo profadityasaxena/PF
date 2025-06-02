@@ -1,6 +1,6 @@
 import React from 'react'
-import TopNavigation from './topnavigation'
-import BarNavigation from './barnavigation'
+import TopNavigation from './TopNavigation'
+import BarNavigation from './BarNavigation'
 const Index= () => {
   return (
     <div>

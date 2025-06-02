@@ -1,10 +1,11 @@
 import React from 'react';
 import Logo from './Logo';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import Link from 'next/link';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faFolderOpen, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const TopNavigation = () => {
   return (
@@ -13,9 +14,9 @@ const TopNavigation = () => {
         <Logo />
       </div>
       <nav className="flex space-x-4 text-sm items-center">
-        <a href="/" className="hover:text-gray-600">
+        <Link href="/" className="hover:text-gray-600">
           <FontAwesomeIcon icon={faHome} />
-        </a>
+        </Link>
         
         <span className="text-gray-400">|</span>
         <a href="/contact" className="hover:text-gray-600">

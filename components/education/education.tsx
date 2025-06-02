@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
+import Image from 'next/image';
 import LogoBU from './assets/LogoBU.png';
 import LogoPU from './assets/LogoPU.png';
 import LogoTMU from './assets/LogoTMU.png';
@@ -128,9 +129,7 @@ const Education = () => {
             key={index}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <div className="w-26 h-26 mb-4">
-              <img src={edu.logo} alt="Logo" className="w-full h-full object-contain" />
-            </div>
+            <Image src={edu.logo} alt="Logo" className="object-contain mb-4" width={144} height={144} />
             <span className="card__date text-primary-text text-lg text-center mb-2">{edu.date}</span>
             <h2 className="card__title text-center font-serif font-semibold text-xl text-secondary-text mb-2">{edu.title}</h2>
             <p className="text-sm italic text-primary-text text-center mb-1">

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import '../../app/globals.css'; // Ensure global styles are imported
 import Image from 'next/image';
@@ -10,10 +10,10 @@ import menuImage4 from './assets/menu-item-4.png';
 import menuImage5 from './assets/menu-item-5.png';
 
 const BarNavigation = () => {
-  const barRefs = useRef([]);
+  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   const contentRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [countdown, setCountdown] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [countdown, setCountdown] = useState<string | null>(null);
   const [showDetail, setShowDetail] = useState(false);
   // Bar reference
   const barRef = useRef(null);
@@ -48,7 +48,7 @@ const BarNavigation = () => {
   }, []);
 
 
-  const handleBarClick = (index) => {
+  const handleBarClick = (index: number) => {
     setActiveIndex(index);
     const timeline = gsap.timeline();
     timeline
@@ -94,7 +94,7 @@ const BarNavigation = () => {
       className="block relative top-[60px] left-0 w-screen bg-white z-50 flex transition-all duration-700 ease-in-out mb-[60px] pb-[4em] h-auto"
     >
       {/* Static vertical bars */}
-      <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[0] = el} onClick={() => handleBarClick(0)}>
+      <div className="ml-[0.5em] mr-[3px]" ref={(el) => { barRefs.current[0] = el; }} onClick={() => handleBarClick(0)}>
         <div
           className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
@@ -115,7 +115,7 @@ const BarNavigation = () => {
           </span>
         </div>
       </div>
-      <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[1] = el} onClick={() => handleBarClick(1)}>
+      <div className="ml-[0.5em] mr-[3px]" ref={(el) => { barRefs.current[1] = el; }} onClick={() => handleBarClick(1)}>
         <div
           className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
@@ -136,7 +136,7 @@ const BarNavigation = () => {
           </span>
         </div>
       </div>
-      <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[2] = el} onClick={() => handleBarClick(2)}>
+      <div className="ml-[0.5em] mr-[3px]" ref={(el) => { barRefs.current[2] = el; }} onClick={() => handleBarClick(2)}>
         <div
           className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
@@ -157,7 +157,7 @@ const BarNavigation = () => {
           </span>
         </div>
       </div>
-      <div className="ml-[0.5em] mr-[3px]" ref={el => barRefs.current[3] = el} onClick={() => handleBarClick(3)}>
+      <div className="ml-[0.5em] mr-[3px]" ref={(el) => { barRefs.current[3] = el; }} onClick={() => handleBarClick(3)}>
         <div
           className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
@@ -178,7 +178,7 @@ const BarNavigation = () => {
           </span>
         </div>
       </div>
-      <div className="ml-[0.5em]" ref={el => barRefs.current[4] = el} onClick={() => handleBarClick(4)}>
+      <div className="ml-[0.5em]" ref={(el) => { barRefs.current[4] = el; }} onClick={() => handleBarClick(4)}>
         <div
           className="w-[30px] h-[50vh] border-r flex items-center justify-center transition-colors duration-200"
           style={{
@@ -304,11 +304,11 @@ const BarNavigation = () => {
               2: 'Projects',
               3: 'Get In Touch',
               4: 'Resume'
-            }[activeIndex] || 'Detail Title'}
+            }[activeIndex ?? 0] || 'Detail Title'}
           </h2>
           <Image
             src={
-              [menuImage1, menuImage2, menuImage3, menuImage4, menuImage5][activeIndex] || menuImage1
+              [menuImage1, menuImage2, menuImage3, menuImage4, menuImage5][activeIndex ?? 0] || menuImage1
             }
             alt="Menu Item Visual"
             className="w-[60%] h-[15%] object-contain mb-6"
@@ -316,22 +316,22 @@ const BarNavigation = () => {
           />
           <p className="max-w-xl text-sm text-[var(--color-dark-brown)] font-serif whitespace-pre-line">
             {{
-              0: `Welcome to my portfolio! I’m Aditya Saxena — an engineer, educator, and builder dedicated to creating meaningful, human-centered technology. With a foundation rooted in curiosity and a career shaped by experience across cloud computing, AI, education, and software architecture, I’ve spent over a decade transforming complex ideas into scalable digital systems.
+              0: `Welcome to my portfolio! I am Aditya Saxena — an engineer, educator, and builder dedicated to creating meaningful, human-centered technology. With a foundation rooted in curiosity and a career shaped by experience across cloud computing, AI, education, and software architecture, I have spent over a decade transforming complex ideas into scalable digital systems.
 
-This portfolio is more than a showcase — it's a story. A story of projects that span disciplines, of challenges solved through code and collaboration, and of a commitment to continuous learning. Thank you for visiting.`,
+This portfolio is more than a showcase — it is a story. A story of projects that span disciplines, of challenges solved through code and collaboration, and of a commitment to continuous learning. Thank you for visiting.`,
               1: `I am a technology strategist and educator with a passion for building responsible, impactful systems. My background includes over 12 years of designing and scaling digital platforms across sectors such as education, cloud infrastructure, and artificial intelligence. Through academic leadership and hands-on technical expertise, I strive to empower others and drive ethical innovation.
 
 My journey is guided by a strong belief in the transformative power of open knowledge and thoughtful design. Whether in the classroom or on a product team, I bring systems thinking, empathy, and a deep commitment to sustainable, human-centered development.`,
               2: `Each project featured here reflects my commitment to technical excellence and practical value. From containerized microservices on the cloud to interactive AI-driven applications, I prioritize architecture that is robust, accessible, and secure.
 
 Whether developing scalable APIs, orchestrating serverless workflows, or training intelligent models, my work is grounded in curiosity, experimentation, and a dedication to user experience. I enjoy solving complex problems by blending modern technologies with elegant design principles.`,
-              3: `I value meaningful conversations and interdisciplinary collaboration. Whether you're a fellow technologist, entrepreneur, researcher, or simply curious — I welcome the opportunity to connect.
+              3: `I value meaningful conversations and interdisciplinary collaboration. Whether you are a fellow technologist, entrepreneur, researcher, or simply curious — I welcome the opportunity to connect.
 
-If something in this portfolio resonates with you, feel free to reach out. I am always open to exploring new ideas, sharing insights, or discussing how we might build something valuable together. Let’s connect and shape the future of innovation.`,
-              4: `Due to cybersecurity concerns, I do not share my resume directly on this platform. However, I’d be happy to tell you more about my background, experiences, and accomplishments through a direct conversation.
+If something in this portfolio resonates with you, feel free to reach out. I am always open to exploring new ideas, sharing insights, or discussing how we might build something valuable together. Let us connect and shape the future of innovation.`,
+              4: `Due to cybersecurity concerns, I don&apos;t share my resume directly on this platform. However, I would be happy to tell you more about my background, experiences, and accomplishments through a direct conversation.
 
-If you're interested in collaborating or learning more about my work, please drop me an email. I look forward to connecting.`
-            }[activeIndex] || ''}
+If you are interested in collaborating or learning more about my work, please drop me an email. I look forward to connecting.`
+            }[activeIndex ?? 0] || ''}
           </p>
           <button
             className="mt-10 px-4 py-2 text-sm border border-[var(--color-dark-brown)] text-[var(--color-dark-brown)] hover:bg-[var(--color-cream)]"
