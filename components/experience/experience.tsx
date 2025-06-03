@@ -62,11 +62,13 @@ const Experience = () => {
             const target = e.currentTarget;
             target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
             target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
+            target.style.backgroundColor = '#ffffff';
           }}
           onMouseLeave={(e) => {
             const target = e.currentTarget;
             target.style.transform = 'none';
             target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
+            target.style.backgroundColor = 'var(--color-cream)';
           }}
         >
           <div
@@ -130,11 +132,13 @@ const Experience = () => {
             const target = e.currentTarget;
             target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
             target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
+            target.style.backgroundColor = '#ffffff';
           }}
           onMouseLeave={(e) => {
             const target = e.currentTarget;
             target.style.transform = 'none';
             target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
+            target.style.backgroundColor = 'var(--color-cream)';
           }}
         >
           <div
@@ -198,11 +202,13 @@ const Experience = () => {
             const target = e.currentTarget;
             target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
             target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
+            target.style.backgroundColor = '#ffffff';
           }}
           onMouseLeave={(e) => {
             const target = e.currentTarget;
             target.style.transform = 'none';
             target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
+            target.style.backgroundColor = 'var(--color-cream)';
           }}
         >
           <div

@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import logo from './assets/logo.png';
 
 const Logo = () => {
   return (
-    <div>
-      ADITYA SAXENA
+    <div className="logo">
+      <img src={logo.src} alt="Aditya Saxena" height="50px" className="logo-image" />
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;
