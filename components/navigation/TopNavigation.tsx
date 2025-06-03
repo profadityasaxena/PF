@@ -28,7 +28,7 @@ const TopNavigation = () => {
           const coords = `${position.coords.latitude}, ${position.coords.longitude}`;
           setFormData((prev) => ({ ...prev, location: coords }));
         },
-        (error) => {
+        () => {
           console.warn("Geolocation could not be retrieved. It may be blocked by the browser or user settings.");
         }
       );
