@@ -238,7 +238,7 @@ const BarNavigation = () => {
             </p>
             <p className="text-xs sm:text-sm text-balance">
               My career is a continuous pursuit of purpose, innovation, and positive impact.
-              With over 12 years of experience across cloud computing, AI, software engineering, and education,
+              With over 15+ years of experience across cloud computing, AI, software engineering, and education,
               my resume reflects a passion for lifelong learning and transformational leadership.
             </p>
           </div>
