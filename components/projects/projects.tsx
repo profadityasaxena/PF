@@ -166,143 +166,158 @@ const Projects: React.FC = () => {
   const currentProject = projects[currentIndex];
 
   return (
-    <section
-      style={{
-        background: "#fff",
-        padding: "3rem 0",
-        width: "100%",
-        margin: 0,
-        minHeight: "800px"
-      }}
-    >
-      <div
+    <>
+      <br /><br />
+      <br /><br />
+      <h1 style={{ textAlign: "center", fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+        Academic Projects
+      </h1>
+      <p style={{ textAlign: "center", fontSize: "1.1rem", maxWidth: "800px", margin: "0 auto 2rem auto", color: "#555" }}>
+        The following projects were completed as part of my academic coursework and research across multiple universities.
+        These highlight my experience with machine learning, simulation, big data systems, and AI applications.
+        <br /><br />
+        <hr/>
+        <br /><br />
+        <strong>NOTE : </strong>A section on industry projects is currently under development.
+      </p>
+      <section
         style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 1.5rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem",
-          flexWrap: "wrap",
+          background: "#fff",
+          padding: "3rem 0",
+          width: "100%",
+          margin: 0,
+          minHeight: "800px"
         }}
       >
         <div
           style={{
-            flex: "1 1 40%",
-            textAlign: "left",
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 1.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "2rem",
+            flexWrap: "wrap",
           }}
         >
-          <h2
-            id="project-title"
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: 700,
-              marginBottom: "1rem",
-              letterSpacing: "-0.5px",
-            }}
-          >
-            {currentProject.title}
-          </h2>
           <div
             style={{
-              fontSize: "1.1rem",
-              color: "#666",
+              flex: "1 1 40%",
+              textAlign: "left",
             }}
           >
-            {currentProject.institution}
+            <h3
+              id="project-title"
+              style={{
+                fontSize: "1.8rem",
+                fontWeight: 700,
+                marginBottom: "1rem",
+                letterSpacing: "-0.5px",
+              }}
+            >
+              {currentProject.title}
+            </h3>
+            <div
+              style={{
+                fontSize: "1.1rem",
+                color: "#666",
+              }}
+            >
+              {currentProject.institution}
+            </div>
           </div>
-        </div>
-        <div
-          ref={cardRef}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => {
-            setPaused(false);
-            gsap.to(cardRef.current, {
-              rotateY: 0,
-              rotateX: 0,
-              scale: 1,
+          <div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => {
+              setPaused(false);
+              gsap.to(cardRef.current, {
+                rotateY: 0,
+                rotateX: 0,
+                scale: 1,
+                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+                duration: 0.4,
+                ease: "power2.inOut",
+              });
+            }}
+            style={{
+              flex: "1 1 55%",
+              background: "#fff",
+              border: "1px solid #000",
+              padding: "2rem",
+              fontFamily: "'Times New Roman', Times, serif",
+              fontSize: "11pt",
+              color: "#000",
+              boxSizing: "border-box",
+              transformStyle: "preserve-3d",
+              perspective: "1000px",
               boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
-              duration: 0.4,
-              ease: "power2.inOut",
-            });
-          }}
-          style={{
-            flex: "1 1 55%",
-            background: "#fff",
-            border: "1px solid #000",
-            padding: "2rem",
-            fontFamily: "'Times New Roman', Times, serif",
-            fontSize: "11pt",
-            color: "#000",
-            boxSizing: "border-box",
-            transformStyle: "preserve-3d",
-            perspective: "1000px",
-            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
-            transition: "box-shadow 0.3s ease",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "14pt",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              textAlign: "center",
-              marginBottom: "0.5rem",
+              transition: "box-shadow 0.3s ease",
             }}
           >
-            {currentProject.title}
-          </h3>
-          <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+            <h3
+              style={{
+                fontSize: "14pt",
+                fontWeight: "bold",
+                textTransform: "uppercase",
+                textAlign: "center",
+                marginBottom: "0.5rem",
+              }}
+            >
+              {currentProject.title}
+            </h3>
+            <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+              <div
+                style={{
+                  fontVariant: "small-caps",
+                  fontSize: "11pt",
+                }}
+              >
+                Author
+              </div>
+              <div
+                style={{
+                  fontStyle: "italic",
+                  fontSize: "12pt",
+                }}
+              >
+                Aditya Saxena
+              </div>
+              <div
+                style={{
+                  fontStyle: "italic",
+                  fontSize: "12pt",
+                }}
+              >
+                Department of Computer Science, {currentProject.institution}
+              </div>
+            </div>
             <div
               style={{
+                fontWeight: "bold",
                 fontVariant: "small-caps",
-                fontSize: "11pt",
-              }}
-            >
-              Author
-            </div>
-            <div
-              style={{
-                fontStyle: "italic",
                 fontSize: "12pt",
+                marginBottom: "0.5rem",
+                textAlign: "center",
               }}
             >
-              Aditya Saxena
+              Abstract
             </div>
-            <div
+            <p
               style={{
-                fontStyle: "italic",
                 fontSize: "12pt",
+                lineHeight: 1.5,
+                textAlign: "justify",
               }}
             >
-              Department of Computer Science, {currentProject.institution}
-            </div>
+              {currentProject.description}
+            </p>
           </div>
-          <div
-            style={{
-              fontWeight: "bold",
-              fontVariant: "small-caps",
-              fontSize: "12pt",
-              marginBottom: "0.5rem",
-              textAlign: "center",
-            }}
-          >
-            Abstract
-          </div>
-          <p
-            style={{
-              fontSize: "12pt",
-              lineHeight: 1.5,
-              textAlign: "justify",
-            }}
-          >
-            {currentProject.description}
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
