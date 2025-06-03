@@ -328,7 +328,7 @@ Whether developing scalable APIs, orchestrating serverless workflows, or trainin
               3: `I value meaningful conversations and interdisciplinary collaboration. Whether you are a fellow technologist, entrepreneur, researcher, or simply curious — I welcome the opportunity to connect.
 
 If something in this portfolio resonates with you, feel free to reach out. I am always open to exploring new ideas, sharing insights, or discussing how we might build something valuable together. Let us connect and shape the future of innovation.`,
-              4: `Due to cybersecurity concerns, I don&apos;t share my resume directly on this platform. However, I would be happy to tell you more about my background, experiences, and accomplishments through a direct conversation.
+              4: `Due to cybersecurity concerns, I don't share my resume directly on this platform. However, I would be happy to tell you more about my background, experiences, and accomplishments through a direct conversation.
 
 If you are interested in collaborating or learning more about my work, please drop me an email. I look forward to connecting.`
             }[activeIndex ?? 0] || ''}
