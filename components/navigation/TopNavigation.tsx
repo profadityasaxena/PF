@@ -29,7 +29,7 @@ const TopNavigation = () => {
           setFormData((prev) => ({ ...prev, location: coords }));
         },
         () => {
-          console.warn("Geolocation could not be retrieved. It may be blocked by the browser or user settings.");
+          console.warn("Geolocation could not be retrieved... It may be blocked by the browser or user settings.");
         }
       );
     }
