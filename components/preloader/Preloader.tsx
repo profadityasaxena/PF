@@ -113,7 +113,7 @@ const Preloader = () => {
 
       gsap.to(containerRef.current, {
         opacity: 0,
-        delay: 10,
+        delay: 5,
         duration: 1,
         onComplete: () => {
           containerRef.current!.style.display = 'none';

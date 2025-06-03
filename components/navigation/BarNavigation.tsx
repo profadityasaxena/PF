@@ -22,7 +22,7 @@ const BarNavigation = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
-    }, 11000); // Wait 11 seconds (preloader duration + buffer)
+    }, 6000); // Wait 11 seconds (preloader duration + buffer)
 
     return () => clearTimeout(timeout);
   }, []);
