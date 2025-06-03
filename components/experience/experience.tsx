@@ -1,7 +1,28 @@
 'use client';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Experience = () => {
+  useEffect(() => {
+    const updateCardLayout = () => {
+      const cards = document.querySelectorAll('.experience-card');
+      cards.forEach(card => {
+        const cardContent = card.querySelector('div');
+        if (window.innerWidth < 768) {
+          cardContent.style.flexDirection = 'column';
+          cardContent.style.alignItems = 'center';
+          cardContent.style.textAlign = 'center';
+        } else {
+          cardContent.style.flexDirection = 'row';
+          cardContent.style.alignItems = 'flex-start';
+          cardContent.style.textAlign = 'left';
+        }
+      });
+    };
+    updateCardLayout();
+    window.addEventListener('resize', updateCardLayout);
+    return () => window.removeEventListener('resize', updateCardLayout);
+  }, []);
+
   return (
     <div style={{ padding: '2rem', backgroundColor: 'var(--color-light-brown)', textAlign: 'center' }}>
       <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
