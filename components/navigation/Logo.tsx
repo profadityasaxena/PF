@@ -8,8 +8,8 @@ const Logo = () => {
       <Image
         src={logo}
         alt="Aditya Saxena"
-        width={200}
-        height={50}
+        width={160}
+        height={40}
         className="logo-image"
       />
     </div>
