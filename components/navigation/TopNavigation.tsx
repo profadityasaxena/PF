@@ -40,15 +40,18 @@ const TopNavigation = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch('/api/sendMail', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-    setShowPopup(false);
-    alert('Message sent successfully!');
+    const body =
+      `First Name: ${formData.firstName}%0D%0A` +
+      `Last Name: ${formData.lastName}%0D%0A` +
+      `Gender: ${formData.gender}%0D%0A` +
+      `Email: ${formData.email}%0D%0A` +
+      `Phone: ${formData.phone}%0D%0A` +
+      `Message: ${formData.message}%0D%0A` +
+      `Location: ${formData.location}`;
+
+    window.location.href = `mailto:iam_adisxn@outlook.com?subject=New Contact Form Submission&body=${body}`;
   };
 
   console.log("Popup visible?", showPopup);
