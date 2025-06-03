@@ -10,7 +10,7 @@ const quotes = [
     velocity: -20,
   },
   {
-    text: "There are only two ways to live your life... - Albert Einstein",
+    text: "There Are Only Two Ways To Live Your Life. One Is As Though Nothing Is a Miracle. The Other Is As Though Everything Is a Miracle - Albert Einstein",
     zIndex: 3,
     fontSize: "1.6rem",
     velocity: 15,
@@ -22,7 +22,7 @@ const quotes = [
     velocity: -25,
   },
   {
-    text: "The secret of genius is to carry the spirit of the child... - Aldous Huxley",
+    text: "The secret of genius is to carry the spirit of the child into old age, which means never losing your enthusiasm - Aldous Huxley",
     zIndex: 2,
     fontSize: "1.4rem",
     velocity: 10,
@@ -34,13 +34,13 @@ const quotes = [
     velocity: -12,
   },
   {
-    text: "The urges to improve ourselves... - Ramez Naam",
+    text: "Playing God is actually the highest expression of human nature. The urges to improve ourselves, to master our environment, and to set our children on the best path possible have been the fundamental driving forces of all of human history. Without these urges to ‘play God’, the world as we know it wouldn’t exist today - Ramez Naam",
     zIndex: 1,
     fontSize: "1.2rem",
     velocity: 8,
   },
   {
-    text: "When something is important enough... - Elon Musk",
+    text: "When something is important enough, you do it even if the odds are not in your favor - Elon Musk",
     zIndex: 3,
     fontSize: "1.5rem",
     velocity: 18,
@@ -168,7 +168,7 @@ const Preloader = () => {
               position: 'absolute',
               top: `${(index * 15) % 90 + Math.random() * 5}%`,
               left: `${(index * 25) % 90 + Math.random() * 5}%`,
-              fontSize: quote.fontSize,
+              fontSize: 'clamp(0.8rem, 1.2vw + 0.5rem, ' + quote.fontSize + ')',
               fontFamily: font,
               color: color,
               zIndex: quote.zIndex,
