@@ -7,14 +7,16 @@ const Experience = () => {
       const cards = document.querySelectorAll('.experience-card');
       cards.forEach(card => {
         const cardContent = card.querySelector('div');
-        if (window.innerWidth < 768) {
-          cardContent.style.flexDirection = 'column';
-          cardContent.style.alignItems = 'center';
-          cardContent.style.textAlign = 'center';
-        } else {
-          cardContent.style.flexDirection = 'row';
-          cardContent.style.alignItems = 'flex-start';
-          cardContent.style.textAlign = 'left';
+        if (cardContent) {
+          if (window.innerWidth < 768) {
+            cardContent.style.flexDirection = 'column';
+            cardContent.style.alignItems = 'center';
+            cardContent.style.textAlign = 'center';
+          } else {
+            cardContent.style.flexDirection = 'row';
+            cardContent.style.alignItems = 'flex-start';
+            cardContent.style.textAlign = 'left';
+          }
         }
       });
     };
