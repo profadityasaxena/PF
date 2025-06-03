@@ -17,8 +17,19 @@ const BarNavigation = () => {
   const [showDetail, setShowDetail] = useState(false);
   // Bar reference
   const barRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 12000); // Wait 12 seconds (preloader duration + buffer)
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     // Animate bars sliding in from the left
     gsap.from(barRefs.current, {
       x: -50,
@@ -45,7 +56,7 @@ const BarNavigation = () => {
       delay: 1,
       ease: 'power2.out'
     });
-  }, []);
+  }, [isVisible]);
 
 
   const handleBarClick = (index: number) => {
@@ -88,6 +99,7 @@ const BarNavigation = () => {
       });
   };
 
+  if (!isVisible) return null;
   return (
     <div
       ref={barRef}
