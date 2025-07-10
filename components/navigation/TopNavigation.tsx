@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import logo from './logo';
+import Logo from './Logo';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Link from 'next/link';
 import { config } from '@fortawesome/fontawesome-svg-core';
