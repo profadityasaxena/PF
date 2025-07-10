@@ -114,8 +114,7 @@ const Education = () => {
   return (
     <section
       ref={sectionRef}
-      className="education-section py-16 px-4"
-      style={{ background: "#ffffff", minHeight: "130vh" }}
+      className="education-section py-16 px-4 bg-white min-h-[130vh]"
     >
       <div className="mb-10 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Education</h1>
@@ -124,22 +123,22 @@ const Education = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {educationData.map((edu, index) => (
           <div
             key={index}
-            className="card relative bg-white border-[10px] border-gray-300 rounded-xl shadow-md pt-12 px-6 pb-8 flex flex-col items-center transition-transform w-[210mm] h-[144mm] mx-auto"
+            className="card relative bg-white border-4 border-gray-300 rounded-xl shadow-md p-6 flex flex-col items-center transition-transform"
             style={{ transformStyle: "preserve-3d" }}
           >
             <Image
               src={edu.logo}
               alt="Logo"
               className="object-contain mb-4"
-              width={144}
-              height={144}
+              width={96}
+              height={96}
             />
-            <span className="text-gray-800 text-lg text-center mb-2">{edu.date}</span>
-            <h2 className="text-center font-serif font-semibold text-xl text-gray-700 mb-2">
+            <span className="text-gray-800 text-md text-center mb-2">{edu.date}</span>
+            <h2 className="text-center font-serif font-semibold text-lg text-gray-700 mb-2">
               {edu.title}
             </h2>
             <p className="text-sm italic text-gray-500 text-center mb-1">
@@ -149,7 +148,9 @@ const Education = () => {
                 ? "This diploma is awarded to"
                 : "This degree is awarded to"}
             </p>
-            <p className="text-lg font-bold text-gray-800 text-center mb-2">Aditya Saxena</p>
+            <p className="text-base font-bold text-gray-800 text-center mb-2">
+              Aditya Saxena
+            </p>
             {edu.link && (
               <a
                 href={edu.link}
@@ -161,7 +162,7 @@ const Education = () => {
               </a>
             )}
             <div className="flex-grow" />
-            <p className="text-center mt-4 text-md text-gray-600 leading-snug">
+            <p className="text-center mt-4 text-sm text-gray-600 leading-snug">
               {edu.project}
             </p>
           </div>

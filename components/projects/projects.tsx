@@ -117,8 +117,7 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <br /><br /><br /><br />
-      <h1 style={{ textAlign: "center", fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+      <h1 style={{ textAlign: "center", fontSize: "2.5rem", fontWeight: "bold", marginBottom: "0.3rem" }}>
         Selected Articles
       </h1>
       <p style={{ textAlign: "center", fontSize: "1.1rem", maxWidth: "800px", margin: "0 auto 2rem auto", color: "#555" }}>
@@ -127,7 +126,7 @@ const Projects: React.FC = () => {
         <br /><br /><hr/><br /><br />
         <strong>NOTE :</strong> A section on industry projects is currently under development.
       </p>
-      <section style={{ background: "#fff", padding: "3rem 0", width: "100%", margin: 0, minHeight: "800px" }}>
+      <section style={{ background: "#fff", padding: "1rem 0", width: "100%", margin: 0, minHeight: "800px" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "2rem", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 40%", textAlign: "left" }}>
             <h3 id="project-title" style={{ fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem", letterSpacing: "-0.5px" }}>
