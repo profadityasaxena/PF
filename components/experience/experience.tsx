@@ -1,10 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState, useRef } from 'react';
 
 type ExperienceItem = {
   id: string;
@@ -73,33 +69,6 @@ const Experience = () => {
   const toggleCard = (id: string) => {
     setActiveId((prev) => (prev === id ? null : id));
   };
-
-  useEffect(() => {
-    cardRefs.current.forEach((card, index) => {
-      if (!card) return;
-
-      const fromX = index % 2 === 0 ? -150 : 150;
-
-      gsap.fromTo(
-        card,
-        { x: fromX, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none reverse',
-            scrub: false,
-          },
-        }
-      );
-    });
-
-    ScrollTrigger.refresh(); // Force a refresh after rendering
-  }, []);
 
   return (
     <div className="px-4 py-10 max-w-4xl mx-auto">
