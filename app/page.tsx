@@ -20,9 +20,10 @@ export default function Home() {
     <>
       <Preloader />
       <Index />
-      <Education />
+      
       <Projects />
       <Experience />
+      <Education />
     </>
   );
 }

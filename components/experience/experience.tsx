@@ -1,263 +1,159 @@
 'use client';
-import React, { useEffect } from 'react'
+
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+type ExperienceItem = {
+  id: string;
+  title: string;
+  company: string;
+  period: string;
+  location?: string;
+  description?: string;
+  bullets: string[];
+  keywords: string[];
+};
+
+const experienceData: ExperienceItem[] = [
+  {
+    id: 'loyalist',
+    title: 'Faculty Member',
+    company: 'Loyalist College',
+    period: 'May 2023 – Present · 2 yrs 2 mos',
+    location: 'Permanent Full-time',
+    keywords: ['Cloud Computing', 'AI Curriculum', 'Agile Learning', 'React', 'Serverless', 'Capstone Projects', 'Databricks', 'Ethical AI'],
+    bullets: [
+      'Led a transformative redesign of the Cloud Computing and AI curriculum...',
+      'Introduced agile-based collaborative learning...',
+      'Mentored junior faculty and contributed to digital transformation...',
+      'Organized guest lectures and panels...',
+      'Delivered workshops on data visualization and ethical AI practices.',
+    ],
+  },
+  {
+    id: 'consulting',
+    title: 'Member of Consulting Staff',
+    company: 'Consulting',
+    period: 'Sep 2014 – Present · 11 years',
+    location: 'Toronto, Ontario, Canada · On-site',
+    keywords: ['AI Strategy', 'Data Pipelines', 'Cloud Architecture', 'GCP', 'DevSecOps', 'Terraform', 'GitHub Actions', 'Startup Consulting'],
+    bullets: [
+      'Architected AI-first digital strategies for SMEs...',
+      'Implemented data pipelines and dashboards...',
+      'Translated system requirements into digital solutions...',
+      'Conducted analysis to support startup product launches.',
+      'Delivered executive briefings to translate cloud strategies...',
+    ],
+  },
+  {
+    id: 'confidential',
+    title: 'Confidential – Previous Data Withheld',
+    company: 'Confidential',
+    period: 'Jun 2009 – May 2023 · 14 yrs',
+    location: 'Canada',
+    description: 'Some previous roles and data have been withheld due to cybersecurity...',
+    keywords: ['Zero Trust', 'Legacy Modernization', 'Secure Coding', 'Compliance', 'Security Architectures', 'Technical Leadership'],
+    bullets: [
+      'Led secure software development projects...',
+      'Deployed applications modernizing legacy infrastructure...',
+      'Acted as technical lead and security liaison...',
+      'Enforced zero-trust architectures...',
+      'Trained junior staff in secure coding and compliance documentation.',
+    ],
+  },
+];
 
 const Experience = () => {
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
+
+  const toggleCard = (id: string) => {
+    setActiveId((prev) => (prev === id ? null : id));
+  };
+
   useEffect(() => {
-    const updateCardLayout = () => {
-      const cards = document.querySelectorAll('.experience-card');
-      cards.forEach(card => {
-        const cardContent = card.querySelector('div');
-        if (cardContent) {
-          if (window.innerWidth < 768) {
-            cardContent.style.flexDirection = 'column';
-            cardContent.style.alignItems = 'center';
-            cardContent.style.textAlign = 'center';
-          } else {
-            cardContent.style.flexDirection = 'row';
-            cardContent.style.alignItems = 'flex-start';
-            cardContent.style.textAlign = 'left';
-          }
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+
+      const fromX = index % 2 === 0 ? -150 : 150;
+
+      gsap.fromTo(
+        card,
+        { x: fromX, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
+            scrub: false,
+          },
         }
-      });
-    };
-    updateCardLayout();
-    window.addEventListener('resize', updateCardLayout);
-    return () => window.removeEventListener('resize', updateCardLayout);
+      );
+    });
+
+    ScrollTrigger.refresh(); // Force a refresh after rendering
   }, []);
 
   return (
-    <div style={{ padding: '2rem', backgroundColor: 'var(--color-light-brown)', textAlign: 'center' }}>
-      <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '0.75rem', textAlign: 'center', color: 'var(--color-dark-brown)' }}>
-          Career Summary
-        </h1>
-        <p style={{ fontSize: '1rem', maxWidth: '800px', margin: '1rem auto', lineHeight: '1.6', color: 'var(--color-dark-brown)', textAlign: 'center' }}>
-          As a multidisciplinary engineer, professor, and technology strategist, I bring 12+ years of global experience spanning cloud computing, AI/ML innovation, and full-stack software development. My ikigai lies at the intersection of technology, education, and community impact — building systems that solve real problems, teaching the next generation, and driving sustainable, secure digital transformation across sectors.
+    <div className="px-4 py-10 max-w-4xl mx-auto">
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-primary-text mb-4">Experience</h1>
+        <p className="text-lg text-gray-700">
+          As a multidisciplinary engineer, professor, and technology strategist, I bring 12+ years of global experience
+          spanning cloud computing, AI/ML innovation, and full-stack software development.
         </p>
       </div>
-      <div
-        style={{
-          marginTop: '1.5rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.5rem',
-          alignItems: 'center',
-        }}
-      >
-        {/* Faculty Member Card */}
-        <div
-          className="experience-card"
-          style={{
-            backgroundColor: 'var(--color-cream)',
-            padding: '2rem',
-            borderRadius: '0.5rem',
-            border: '6px solid var(--color-medium-brown)',
-            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.5)',
-            width: '70%',
-            fontFamily: 'var(--font-body)',
-            cursor: 'zoom-in',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
-            target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
-            target.style.backgroundColor = '#ffffff';
-          }}
-          onMouseLeave={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'none';
-            target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
-            target.style.backgroundColor = 'var(--color-cream)';
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '2rem',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between'
-            }}
-          >
-            <div className="card-left" style={{ minWidth: '200px', flex: '0 0 30%', textAlign: 'left' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--color-dark-brown)', textAlign: 'left' }}>
-                Faculty Member
-              </h3>
-              <p style={{ fontWeight: 500, color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>
-                <a href="https://loyalistcollege.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-deep-brown)', textDecoration: 'underline' }}>
-                  Loyalist College
-                </a> · Permanent Full-time
-              </p>
-              <p style={{ color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>May 2023 – Present · 2 yrs 2 mos</p>
-              <p style={{ color: 'var(--color-dark-brown)', textAlign: 'left', marginBottom: 0 }}></p>
-            </div>
-            <div className="card-right" style={{ flex: 1 }}>
-              <ul style={{ marginTop: '0', paddingLeft: '2rem', listStyleType: 'disc', color: 'var(--color-dark-brown)', textAlign: 'justify' }}>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  At Loyalist College, I led a transformative redesign of the Cloud Computing and AI curriculum to address rising student attrition. Recognizing the need for real-world applicability, I spearheaded the integration of industry-led capstone projects and modernized the tech stack to align with employer expectations. This initiative led to a 40% improvement in student retention and a 25% increase in learner satisfaction metrics, establishing a benchmark for pedagogical innovation within the department.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  I introduced agile-based collaborative learning methodologies and redesigned lab experiences to simulate enterprise environments. This not only enhanced student engagement but also improved cross-disciplinary project outcomes by encouraging teamwork and innovation across departments.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  My leadership extended beyond classroom transformation — I mentored junior faculty in integrating emerging tech into their pedagogy and contributed to institutional digital transformation through data-driven curriculum decisions backed by analytics dashboards.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Championed institutional collaborations by organizing guest lectures and industry panels, bridging academic theory with real-world practices and expanding student exposure to cutting-edge innovations.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Delivered high-impact workshops on data visualization and ethical AI practices, enhancing digital literacy and critical thinking skills among learners from diverse backgrounds.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        {/* Member of Consulting Staff Card */}
+      {experienceData.map((item, index) => (
         <div
-          className="experience-card"
-          style={{
-            backgroundColor: 'var(--color-cream)',
-            padding: '2rem',
-            borderRadius: '0.5rem',
-            border: '6px solid var(--color-medium-brown)',
-            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.5)',
-            width: '70%',
-            fontFamily: 'var(--font-body)',
-            cursor: 'zoom-in',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+          key={item.id}
+          ref={(el) => {
+            if (el) cardRefs.current[index] = el;
           }}
-          onMouseEnter={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
-            target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
-            target.style.backgroundColor = '#ffffff';
-          }}
-          onMouseLeave={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'none';
-            target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
-            target.style.backgroundColor = 'var(--color-cream)';
-          }}
+          className={`border border-gray-300 rounded-md mb-4 transition-shadow duration-300 bg-white ${
+            activeId === item.id ? 'shadow-lg' : 'shadow-sm'
+          }`}
         >
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '2rem',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between'
-            }}
+            onClick={() => toggleCard(item.id)}
+            className="cursor-pointer px-6 py-4 flex justify-between items-center bg-gray-100 font-semibold"
           >
-            <div className="card-left" style={{ minWidth: '200px', flex: '0 0 30%', textAlign: 'left' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--color-dark-brown)', textAlign: 'left' }}>
-                Member of Consulting Staff
-              </h3>
-              <p style={{ fontWeight: 500, color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>
-                <a href="https://brainwork.ca/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-deep-brown)', textDecoration: 'underline' }}>
-                  Brainwork Business Consulting
-                </a>
-              </p>
-              <p style={{ color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>Sep 2024 – Present · 10 mos</p>
-              <p style={{ color: 'var(--color-dark-brown)', textAlign: 'left', marginBottom: 0 }}>Toronto, Ontario, Canada · On-site</p>
-            </div>
-            <div className="card-right" style={{ flex: 1 }}>
-              <ul style={{ marginTop: '0', paddingLeft: '2rem', listStyleType: 'disc', color: 'var(--color-dark-brown)', textAlign: 'justify' }}>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  At Brainwork Business Consulting, I architected AI-first digital strategies for SMEs and educational clients, aligning technology adoption with measurable ROI goals. Through stakeholder workshops and in-depth discovery phases, I identified transformation bottlenecks and recommended scalable, cloud-native solutions tailored to each client’s growth trajectory.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  I implemented secure data pipelines and interactive analytics dashboards that reduced reporting overhead by 50%. My strategic interventions empowered clients to adopt cloud platforms with confidence and foster a data-driven decision-making culture across departments.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Leveraging design thinking and domain expertise, I translated complex system requirements into streamlined digital solutions — accelerating delivery cycles and enabling a 60% increase in digital engagement for client organizations within 6 months.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Conducted competitive analysis and digital readiness assessments to shape go-to-market strategies for emerging startups, resulting in three client product launches ahead of schedule.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Delivered executive briefings and whitepapers to C-suite clients, translating complex cloud adoption roadmaps into actionable investment plans with measurable KPIs.
-                </li>
-              </ul>
-            </div>
+            {item.company}
+            <span>{activeId === item.id ? '▲' : '▼'}</span>
           </div>
-        </div>
 
-        {/* Confidential Card */}
-        <div
-          className="experience-card"
-          style={{
-            backgroundColor: 'var(--color-cream)',
-            padding: '2rem',
-            borderRadius: '0.5rem',
-            border: '6px solid var(--color-medium-brown)',
-            boxShadow: '0 12px 24px rgba(0, 0, 0, 0.5)',
-            width: '70%',
-            fontFamily: 'var(--font-body)',
-            cursor: 'zoom-in',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'scale(1.05) rotateX(2deg) rotateY(-2deg)';
-            target.style.boxShadow = '0 16px 32px rgba(0, 0, 0, 0.75)';
-            target.style.backgroundColor = '#ffffff';
-          }}
-          onMouseLeave={(e) => {
-            const target = e.currentTarget;
-            target.style.transform = 'none';
-            target.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.5)';
-            target.style.backgroundColor = 'var(--color-cream)';
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '2rem',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between'
-            }}
-          >
-            <div className="card-left" style={{ minWidth: '200px', flex: '0 0 30%', textAlign: 'left' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--color-dark-brown)', textAlign: 'left' }}>
-                Confidential – Previous Data Withheld Due to Cybersecurity Concerns
-              </h3>
-              <p style={{ fontWeight: 500, color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>
-                Confidential · Permanent Part-time
-              </p>
-              <p style={{ color: 'var(--color-dark-brown)', marginBottom: '0.25rem', textAlign: 'left' }}>Jun 2009 – May 2023 · 14 yrs</p>
-              <p style={{ color: 'var(--color-dark-brown)', textAlign: 'left', marginBottom: 0 }}>Canada</p>
-              <p style={{ marginTop: '0.75rem', fontStyle: 'italic', color: '#6c757d', fontSize: '0.95rem', textAlign: 'left' }}>
-                Some previous roles and data have been withheld due to cybersecurity and data protection concerns. Full professional history can be shared upon request.
-              </p>
-            </div>
-            <div className="card-right" style={{ flex: 1 }}>
-              <ul style={{ marginTop: '0', paddingLeft: '2rem', listStyleType: 'disc', color: 'var(--color-dark-brown)', textAlign: 'justify' }}>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Over 14 years in confidential roles across sensitive sectors, I led secure software development projects that balanced innovation with compliance. Working in environments governed by rigorous data privacy mandates, I consistently delivered mission-critical platforms while maintaining regulatory fidelity and audit transparency.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  I engineered and deployed full-stack web applications and API services that modernized legacy infrastructure without compromising operational security. My codebases were subject to quarterly audits and penetration testing, and consistently received top marks for maintainability and resilience.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  My impact was especially evident in stakeholder confidence and adoption metrics, where I acted as both a technical lead and security liaison, helping cross-functional teams understand and execute compliant design patterns under tight delivery timelines.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Collaborated with cybersecurity teams to enforce zero-trust architectures and role-based access controls across enterprise data systems.
-                </li>
-                <li style={{ marginBottom: '0.75rem' }}>
-                  Trained junior engineers and analysts in secure coding principles and compliance documentation, fostering a culture of accountability and vigilance in codebases and workflows.
-                </li>
-              </ul>
+          <div className={`${activeId === item.id ? 'block' : 'hidden'} px-6 py-4 space-y-3`}>
+            <h3 className="text-xl font-medium">{item.title}</h3>
+            <p>{item.period}</p>
+            {item.location && <p>{item.location}</p>}
+            {item.description && <p className="italic text-sm text-gray-600">{item.description}</p>}
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              {item.bullets.map((point, i) => (
+                <li key={i}>{point}</li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-2 pt-4">
+              {item.keywords.map((kw, i) => (
+                <span
+                  key={i}
+                  className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full"
+                >
+                  {kw}
+                </span>
+              ))}
             </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-
-export default Experience
+export default Experience;
